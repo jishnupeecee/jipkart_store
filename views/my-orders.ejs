@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h2 class="page-title">My Orders</h2>
+
+  <% if (orders.length === 0) { %>
+    <div class="empty-state">
+      <div class="emoji">📦</div>
+      <h3>No orders yet</h3>
+      <p class="page-sub">When you place an order, it'll show up here.</p>
+      <a href="/products" class="btn">Start Shopping</a>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Order ID</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <% orders.forEach(o => { %>
+            <tr>
+              <td>#<%= o.id %></td>
+              <td><%= new Date(o.createdAt).toLocaleDateString() %></td>
+              <td><%= o.items.map(i => i.name + ' ×' + i.qty).join(', ') %></td>
+              <td>₹<%= o.total %></td>
+              <td>
+                <span class="badge <%= o.status === 'Delivered' ? 'badge-green' : (o.status === 'Cancelled' ? 'badge-red' : 'badge-orange') %>"><%= o.status %></span>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

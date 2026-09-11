@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="breadcrumb"><a href="/">Home</a> / <%= activeCategory || 'All Products' %></div>
+
+  <div class="layout-with-sidebar">
+    <div class="sidebar">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="/products" class="<%= !activeCategory ? 'active' : '' %>">All Products</a></li>
+        <% categories.forEach(cat => { %>
+          <li><a href="/products?category=<%= encodeURIComponent(cat) %>" class="<%= activeCategory === cat ? 'active' : '' %>"><%= categoryIcons[cat] || '🏗️' %> <%= cat %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div>
+      <div class="filters-bar">
+        <div class="filters-left">
+          <span class="chip"><%= products.length %> products found<% if (query) { %> for "<%= query %>"<% } %></span>
+        </div>
+        <form method="GET" action="/products">
+          <% if (activeCategory) { %><input type="hidden" name="category" value="<%= activeCategory %>"><% } %>
+          <% if (query) { %><input type="hidden" name="q" value="<%= query %>"><% } %>
+          <select name="sort" class="sort-select" onchange="this.form.submit()">
+            <option value="">Sort: Featured</option>
+            <option value="price_low" <%= sort === 'price_low' ? 'selected' : '' %>>Price: Low to High</option>
+            <option value="price_high" <%= sort === 'price_high' ? 'selected' : '' %>>Price: High to Low</option>
+          </select>
+        </form>
+      </div>
+
+      <% if (products.length === 0) { %>
+        <div class="empty-state">
+          <div class="emoji">🔍</div>
+          <h3>No products found</h3>
+          <p>Try a different category or search term.</p>
+        </div>
+      <% } else { %>
+      <div class="product-grid">
+        <% products.forEach(p => { %>
+          <div class="product-card">
+            <a href="/products/<%= p.id %>" class="thumb"><img src="<%= p.image %>" alt="<%= p.name %>"></a>
+            <div class="info">
+              <span class="cat-label"><%= p.category %></span>
+              <a href="/products/<%= p.id %>"><h3><%= p.name %></h3></a>
+              <div class="price-row">
+                <span class="price">₹<%= p.price %></span>
+                <% if (p.mrp && p.mrp > p.price) { %><span class="mrp">₹<%= p.mrp %></span><% } %>
+                <span class="unit-label"><%= p.unit %></span>
+                <span class="stock-badge <%= p.stock === 0 ? 'stock-out' : (p.stock < 20 ? 'stock-low' : 'stock-ok') %>">
+                  <%= p.stock === 0 ? 'Out of stock' : (p.stock < 20 ? 'Only ' + p.stock + ' left' : 'In stock') %>
+                </span>
+              </div>
+            </div>
+            <div class="actions">
+              <% if (!user || user.role === 'customer') { %>
+              <form action="/cart/add" method="POST">
+                <input type="hidden" name="productId" value="<%= p.id %>">
+                <input type="hidden" name="qty" value="1">
+                <button type="submit" class="btn btn-outline" <%= p.stock === 0 ? 'disabled' : '' %>>Add to Cart</button>
+              </form>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="dash-tabs">
+    <a href="/admin/dashboard">Overview</a>
+    <a href="/admin/products">Products</a>
+    <a href="/admin/users">Users</a>
+    <a href="/admin/orders" class="active">Orders</a>
+  </div>
+
+  <h2 class="page-title" style="margin-top:16px;">All Orders (<%= orders.length %>)</h2>
+
+  <% if (orders.length === 0) { %>
+    <p class="page-sub">No orders placed yet.</p>
+  <% } else { %>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Update</th></tr>
+      </thead>
+      <tbody>
+        <% orders.forEach(o => { %>
+          <tr>
+            <td>#<%= o.id %></td>
+            <td><%= o.customerName %><br><span style="color:#667066;font-size:12px;"><%= o.phone %></span></td>
+            <td><%= o.items.map(i => i.name + ' ×' + i.qty).join(', ') %></td>
+            <td>₹<%= o.total %></td>
+            <td><%= o.paymentMethod %></td>
+            <td><span class="badge <%= o.status === 'Delivered' ? 'badge-green' : (o.status === 'Cancelled' ? 'badge-red' : 'badge-orange') %>"><%= o.status %></span></td>
+            <td><%= new Date(o.createdAt).toLocaleDateString() %></td>
+            <td>
+              <form action="/admin/orders/<%= o.id %>/status" method="POST" style="display:flex;gap:6px;">
+                <select name="status" style="padding:5px 8px;border-radius:5px;border:1px solid #e2e6e3;font-size:12px;">
+                  <% ['Placed','Confirmed','Shipped','Delivered','Cancelled'].forEach(s => { %>
+                    <option value="<%= s %>" <%= o.status === s ? 'selected' : '' %>><%= s %></option>
+                  <% }) %>
+                </select>
+                <button type="submit" class="btn btn-sm">Update</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

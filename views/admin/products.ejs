@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="dash-tabs">
+    <a href="/admin/dashboard">Overview</a>
+    <a href="/admin/products" class="active">Products</a>
+    <a href="/admin/users">Users</a>
+    <a href="/admin/orders">Orders</a>
+  </div>
+
+  <div class="dash-header">
+    <h2 class="page-title" style="margin:0;">Manage Products (<%= products.length %>)</h2>
+    <a href="/admin/products/new" class="btn">+ Add Product</a>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Image</th><th>Name</th><th>Category</th><th>Seller</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td><img class="thumb-sm" src="<%= p.image %>" alt=""></td>
+            <td><%= p.name %></td>
+            <td><%= p.category %></td>
+            <td><%= p.sellerName %></td>
+            <td>₹<%= p.price %></td>
+            <td><span class="badge <%= p.stock === 0 ? 'badge-red' : (p.stock < 20 ? 'badge-orange' : 'badge-green') %>"><%= p.stock %></span></td>
+            <td class="action-btns">
+              <a href="/products/<%= p.id %>" class="btn btn-sm btn-outline">View</a>
+              <a href="/admin/products/<%= p.id %>/edit" class="btn btn-sm btn-outline">Edit</a>
+              <form action="/admin/products/<%= p.id %>/delete" method="POST" onsubmit="return confirm('Delete this product?');">
+                <button type="submit" class="btn btn-sm" style="background:#fdecec;color:#c02626;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

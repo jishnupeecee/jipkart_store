@@ -1,0 +1,115 @@
+<%- include('partials/header') %>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-text">
+      <h1>Everything You Need.<br><span class="accent">All in One Place.</span></h1>
+      <p>Top Quality Building Materials &amp; Trusted Local Professionals For Every Project.</p>
+      <div class="hero-features">
+        <div class="hero-feature"><span class="icon">✅</span> 100%<br>Quality Products</div>
+        <div class="hero-feature"><span class="icon">🚚</span> Fast &amp; Safe<br>Delivery</div>
+        <div class="hero-feature"><span class="icon">🛡️</span> Secure<br>Payments</div>
+        <div class="hero-feature"><span class="icon">🎧</span> Expert<br>Support</div>
+      </div>
+      <a href="/products" class="btn">SHOP NOW →</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.jdmagicbox.com/quickquotes/images_main/-9a2jojb2.jpg" alt="Building materials">
+    </div>
+  </div>
+</div>
+
+<div class="category-strip">
+  <div class="container">
+    <% categories.forEach(cat => { %>
+      <a href="/products?category=<%= encodeURIComponent(cat) %>" class="cat-item">
+        <span class="emoji"><%= categoryIcons[cat] || '🏗️' %></span>
+        <span class="label"><%= cat %></span>
+      </a>
+    <% }) %>
+  </div>
+</div>
+
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-item"><span class="icon">%</span><div><b>Best Prices</b><small>Guaranteed</small></div></div>
+    <div class="trust-item"><span class="icon">🏅</span><div><b>Trusted Local Sellers</b><small>Verified Suppliers</small></div></div>
+    <div class="trust-item"><span class="icon">🚚</span><div><b>Hyperlocal Delivery</b><small>Safe &amp; On-time</small></div></div>
+    <div class="trust-item"><span class="icon">🛡️</span><div><b>Secure Payments</b><small>100% Secure</small></div></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="promo-grid">
+    <div class="promo-card promo-dark">
+      <div>
+        <h3>Bulk Order<br>Special Offers</h3>
+        <p>Get exclusive discounts on bulk purchases.</p>
+      </div>
+      <a href="/products" class="btn btn-orange btn-block">REQUEST QUOTE</a>
+    </div>
+
+    <% if (dealOfDay) { %>
+    <div class="promo-card promo-yellow">
+      <div>
+        <span class="badge badge-red">DEAL OF THE DAY</span>
+        <h3 style="margin-top:8px;"><%= dealOfDay.name %></h3>
+        <div class="promo-price">₹<%= dealOfDay.price %><span class="strike">₹<%= dealOfDay.mrp %></span></div>
+      </div>
+      <a href="/products/<%= dealOfDay.id %>" class="btn btn-block">BUY NOW</a>
+    </div>
+    <% } %>
+
+    <% if (topSteel) { %>
+    <div class="promo-card promo-green-tint">
+      <div>
+        <h3>Top Selling<br><%= topSteel.category %></h3>
+        <div class="promo-price">From ₹<%= topSteel.price %><span style="font-size:13px;font-weight:400;">/<%= topSteel.unit.replace('per ','') %></span></div>
+      </div>
+      <a href="/products?category=<%= encodeURIComponent(topSteel.category) %>" class="btn btn-block">SHOP NOW</a>
+    </div>
+    <% } %>
+
+    <% if (featuredTiles) { %>
+    <div class="promo-card promo-green-tint">
+      <div>
+        <h3>Great Range of<br>Tiles &amp; Sanitary</h3>
+        <div class="promo-price">From ₹<%= featuredTiles.price %><span style="font-size:13px;font-weight:400;">/<%= featuredTiles.unit.replace('per ','') %></span></div>
+      </div>
+      <a href="/products?category=<%= encodeURIComponent(featuredTiles.category) %>" class="btn btn-block">EXPLORE</a>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="section-heading">
+    <h2>Trending Products</h2>
+    <a href="/products">View All →</a>
+  </div>
+  <div class="product-grid">
+    <% trending.forEach(p => { %>
+      <div class="product-card">
+        <a href="/products/<%= p.id %>" class="thumb"><img src="<%= p.image %>" alt="<%= p.name %>"></a>
+        <div class="info">
+          <span class="cat-label"><%= p.category %></span>
+          <a href="/products/<%= p.id %>"><h3><%= p.name %></h3></a>
+          <div class="price-row">
+            <span class="price">₹<%= p.price %></span>
+            <% if (p.mrp && p.mrp > p.price) { %><span class="mrp">₹<%= p.mrp %></span><% } %>
+            <span class="unit-label"><%= p.unit %></span>
+          </div>
+        </div>
+        <div class="actions">
+          <% if (!user || user.role === 'customer') { %>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= p.id %>">
+            <input type="hidden" name="qty" value="1">
+            <button type="submit" class="btn btn-outline">Add to Cart</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

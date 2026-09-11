@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div>🛡️ Delivering Quality. Building Trust.</div>
+    <div class="topbar-links">
+      <a href="/products">🚚 Bulk Orders</a>
+      <% if (user && user.role === 'customer') { %><a href="/orders">📦 Track Order</a><% } %>
+      <a href="#">🎧 Help &amp; Support</a>
+      <span>📞 +91 98765 43210</span>
+    </div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="container">
+    <a href="/" class="logo">
+      <span class="logo-icon">🏠</span>
+      <div>
+        Jip<span>Kart</span>
+        <span class="logo-tag">Build Better. Build Together.</span>
+      </div>
+    </a>
+
+    <form class="search-bar" action="/products" method="GET">
+      <input type="text" name="q" placeholder="Search for products, brands and more..." value="<%= typeof query !== 'undefined' ? query : '' %>">
+      <button type="submit">🔍</button>
+    </form>
+
+    <div class="header-actions">
+      <% if (user) { %>
+        <div class="dropdown">
+          <div class="action-item">
+            <span class="icon">👤</span>
+            <span><%= user.name.split(' ')[0] %> ▾</span>
+          </div>
+          <div class="dropdown-menu">
+            <% if (user.role === 'customer') { %>
+              <a href="/orders">My Orders</a>
+              <a href="/cart">My Cart</a>
+            <% } else if (user.role === 'seller') { %>
+              <a href="/seller/dashboard">Seller Dashboard</a>
+            <% } else if (user.role === 'admin') { %>
+              <a href="/admin/dashboard">Admin Dashboard</a>
+            <% } %>
+            <form action="/logout" method="GET"><button type="submit">Logout</button></form>
+          </div>
+        </div>
+      <% } else { %>
+        <a href="/login" class="action-item">
+          <span class="icon">👤</span>
+          <span>Login / Sign Up</span>
+        </a>
+      <% } %>
+
+      <% if (!user || user.role === 'customer') { %>
+      <a href="/cart" class="action-item">
+        <span class="icon">🛒</span>
+        <span>Cart<% if (cartCount > 0) { %><span class="cart-badge"><%= cartCount %></span><% } %></span>
+      </a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<div class="category-nav">
+  <div class="container">
+    <a href="/products" class="all-cat">☰ ALL CATEGORIES</a>
+    <a href="/" class="active">🏠 HOME</a>
+    <a href="/products?category=Cement%20%26%20Concrete">🧱 BUILDING MATERIALS</a>
+    <a href="/products?category=Hardware%20%26%20Fasteners">🔨 HARDWARE</a>
+    <a href="/products?category=Electrical%20Supplies">⚡ ELECTRICAL</a>
+    <a href="/products?category=Plumbing%20Supplies">🔧 PLUMBING</a>
+    <a href="/products?category=Paints%20%26%20Coatings">🎨 PAINTS</a>
+    <a href="/products?category=Tools%20%26%20Safety">🛠️ TOOLS</a>
+    <a href="/products" class="deals">⚡ DEALS</a>
+  </div>
+</div>

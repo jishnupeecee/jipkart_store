@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="order-conf">
+    <div class="check">✅</div>
+    <h2>Order Placed Successfully!</h2>
+    <p class="page-sub">Thank you for shopping with JipKart. Your order is being processed.</p>
+    <div class="order-id">Order ID: #<%= order.id %></div>
+
+    <div style="text-align:left;margin:20px 0;">
+      <% order.items.forEach(i => { %>
+        <div class="summary-row"><span><%= i.name %> × <%= i.qty %></span><span>₹<%= i.price * i.qty %></span></div>
+      <% }) %>
+      <div class="summary-row total"><span>Total</span><span>₹<%= order.total %></span></div>
+    </div>
+
+    <p class="page-sub">Delivering to: <%= order.address %></p>
+    <p class="page-sub">Payment: <%= order.paymentMethod %></p>
+
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;">
+      <a href="/orders" class="btn">View My Orders</a>
+      <a href="/products" class="btn btn-outline">Continue Shopping</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

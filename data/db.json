@@ -1,0 +1,410 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jipkart Admin",
+      "email": "admin@jipkart.com",
+      "password": "$2a$08$QP.HZ1lR6aGWiabbqM18e.6WI/QqSronRXBx6kKZEKCVI2WZKUjIy",
+      "role": "admin",
+      "phone": "9876543210"
+    },
+    {
+      "id": 2,
+      "name": "Ravi Building Supplies",
+      "email": "seller@jipkart.com",
+      "password": "$2a$08$0EkLQMVQEYXBwrMerFYUvewx6qY9F7t0l3uPT00ob96AhS3rsc7Rq",
+      "role": "seller",
+      "shopName": "Ravi Building Supplies",
+      "phone": "9876500000"
+    },
+    {
+      "id": 3,
+      "name": "Demo Customer",
+      "email": "customer@jipkart.com",
+      "password": "$2a$08$uxvDNZXankxwwyR9UHDAregG.C1i/IouqXqhJlWIRxosDn4udGeXG",
+      "role": "customer",
+      "phone": "9876511111",
+      "address": "12 MG Road, Kochi, Kerala"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "sellerId": 2,
+      "name": "UltraTech Cement (OPC 53 Grade)",
+      "category": "Cement & Concrete",
+      "price": 390,
+      "mrp": 430,
+      "unit": "per 50kg bag",
+      "stock": 489,
+      "image": "https://lntsufin.com/storage/mediafiles/catalog/live/17020-79/original/17020-79_image_0.jpg",
+      "description": "High strength OPC 53 grade cement, ideal for RCC work and structural concrete. Trusted brand with consistent quality.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 2,
+      "sellerId": 2,
+      "name": "ACC Gold Cement",
+      "category": "Cement & Concrete",
+      "price": 360,
+      "mrp": 400,
+      "unit": "per 50kg bag",
+      "stock": 300,
+      "image": "https://sitesupply.in/public/uploads/productImg/1650531221.png",
+      "description": "Premium cement offering superior strength and durability for all construction needs.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 3,
+      "sellerId": 2,
+      "name": "TMT Steel Bars Fe550 (12mm)",
+      "category": "Steel & TMT Bars",
+      "price": 61,
+      "mrp": 68,
+      "unit": "per kg",
+      "stock": 5000,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2025/4/501663514/RM/US/PT/195803700/jsw-neo-steel-fe-550d-12mm-tmt-bars-robust-tmt-bars-for-heavy-duty-applications-1000x1000.jpg",
+      "description": "Corrosion resistant Fe550 grade TMT bars, ISI certified, ideal for earthquake resistant construction.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 4,
+      "sellerId": 2,
+      "name": "TMT Steel Bars Fe500 (8mm)",
+      "category": "Steel & TMT Bars",
+      "price": 58,
+      "mrp": 64,
+      "unit": "per kg",
+      "stock": 4000,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2025/12/564866918/KX/TG/QE/233505833/8mm-rc-rungta-steel-tmt-bars-1000x1000.jpeg",
+      "description": "High tensile strength steel bars suitable for slabs, beams and columns.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 5,
+      "sellerId": 2,
+      "name": "Red Clay Bricks (Standard)",
+      "category": "Bricks & Blocks",
+      "price": 8,
+      "mrp": 10,
+      "unit": "per piece",
+      "stock": 19984,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2023/10/354657341/YV/WO/MW/161673634/25mm-first-quality-clay-bricks-3-500x500.jpg",
+      "description": "Table moulded red clay bricks, well burnt, uniform size for strong masonry work.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 6,
+      "sellerId": 2,
+      "name": "AAC Concrete Blocks (600x200x100mm)",
+      "category": "Bricks & Blocks",
+      "price": 55,
+      "mrp": 65,
+      "unit": "per piece",
+      "stock": 3000,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2026/1/574654605/SK/QY/TM/94011173/lightweight-block-1000x1000.jpg",
+      "description": "Lightweight autoclaved aerated concrete blocks, great thermal insulation and faster construction.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 7,
+      "sellerId": 2,
+      "name": "River Sand (M-Sand Alternative)",
+      "category": "Sand & Aggregates",
+      "price": 55,
+      "mrp": 60,
+      "unit": "per cubic ft",
+      "stock": 10000,
+      "image": "https://5.imimg.com/data5/GLADMIN/Default/2023/5/305551911/EB/KH/MY/154993453/natural-construction-river-sand-1000x1000.jpg",
+      "description": "Fine quality river sand suitable for plastering and masonry work.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 8,
+      "sellerId": 2,
+      "name": "M-Sand (Manufactured Sand)",
+      "category": "Sand & Aggregates",
+      "price": 48,
+      "mrp": 52,
+      "unit": "per cubic ft",
+      "stock": 10000,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/9/OL/TM/VK/12552341/ramco-cement-1000x1000.jpeg",
+      "description": "Consistent quality manufactured sand, eco-friendly alternative to river sand for concrete work.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 9,
+      "sellerId": 2,
+      "name": "Flush Door (32mm, Teak Finish)",
+      "category": "Doors & Windows",
+      "price": 3200,
+      "mrp": 3800,
+      "unit": "per piece",
+      "stock": 40,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2024/3/401667239/ZD/OT/BQ/22938281/wooden-flush-doors-500x500.jpg",
+      "description": "Solid core flush door with teak laminate finish, termite and warp resistant.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 10,
+      "sellerId": 2,
+      "name": "UPVC Window (4x3 ft, Sliding)",
+      "category": "Doors & Windows",
+      "price": 5500,
+      "mrp": 6200,
+      "unit": "per piece",
+      "stock": 25,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2024/5/418420077/KY/LI/TN/201854429/2-track-upvc-sliding-window-1000x1000.jpg",
+      "description": "Weatherproof UPVC sliding window with mosquito mesh, energy efficient glazing.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 11,
+      "sellerId": 2,
+      "name": "CPVC Pipe (1 inch, 3m length)",
+      "category": "Plumbing Supplies",
+      "price": 220,
+      "mrp": 250,
+      "unit": "per piece",
+      "stock": 800,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2023/11/361215489/XT/HQ/EP/22611761/finolex-pvc-solvent-cement-lubricant-500x500.jpg",
+      "description": "Astral CPVC pipe suitable for hot and cold water plumbing lines.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 12,
+      "sellerId": 2,
+      "name": "PVC Elbow Fitting 90° (1 inch)",
+      "category": "Plumbing Supplies",
+      "price": 35,
+      "mrp": 45,
+      "unit": "per piece",
+      "stock": 2000,
+      "image": "https://falajgarden.com/wp-content/uploads/2023/11/1965.jpg",
+      "description": "Durable PVC elbow fitting for plumbing pipe connections.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 13,
+      "sellerId": 2,
+      "name": "Copper Wire Cable (1.5 sqmm, 90m)",
+      "category": "Electrical Supplies",
+      "price": 1450,
+      "mrp": 1650,
+      "unit": "per coil",
+      "stock": 145,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2025/12/568940884/SL/VM/RY/258045651/1-blue-5-1000x1000.jpg",
+      "description": "FR grade copper wiring cable, fire retardant insulation, ideal for house wiring.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 14,
+      "sellerId": 2,
+      "name": "MCB Switch (16A, Single Pole)",
+      "category": "Electrical Supplies",
+      "price": 120,
+      "mrp": 140,
+      "unit": "per piece",
+      "stock": 600,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2020/8/FU/WA/RH/13212093/61egam6gj1l-sl1500-.jpg",
+      "description": "Miniature circuit breaker for overload and short circuit protection.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 15,
+      "sellerId": 2,
+      "name": "Asian Paints Exterior Emulsion",
+      "category": "Paints & Coatings",
+      "price": 2450,
+      "mrp": 2800,
+      "unit": "per 10L bucket",
+      "stock": 120,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2025/9/541357748/HL/RL/FD/40047913/asian-paints-ace-emulsion-exterior-emulsion-1000x1000.png",
+      "description": "Weatherproof exterior emulsion paint with long lasting shine and protection.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 16,
+      "sellerId": 2,
+      "name": "Interior Wall Putty",
+      "category": "Paints & Coatings",
+      "price": 550,
+      "mrp": 620,
+      "unit": "per 20kg bag",
+      "stock": 400,
+      "image": "https://ts2.mm.bing.net/th?id=OIP.yReywhHrDKyBpwbHPsmJqwHaF7&pid=15.1",
+      "description": "White cement based wall putty for smooth, crack-free interior walls.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 17,
+      "sellerId": 2,
+      "name": "Stainless Steel Hinges (4 inch)",
+      "category": "Hardware & Fasteners",
+      "price": 45,
+      "mrp": 55,
+      "unit": "per piece",
+      "stock": 990,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/9/JG/IH/PD/126901174/4-inch-ss-concealed-hinges-1000x1000.jpg",
+      "description": "Rust resistant SS door hinges, heavy duty and long lasting.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 18,
+      "sellerId": 2,
+      "name": "Anchor Bolts (M10 x 100mm)",
+      "category": "Hardware & Fasteners",
+      "price": 18,
+      "mrp": 22,
+      "unit": "per piece",
+      "stock": 3000,
+      "image": "https://m.media-amazon.com/images/I/71kGW0P2TjL._UF1000,1000_QL80_.jpg",
+      "description": "High strength anchor bolts for fixing frames and heavy fixtures.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 19,
+      "sellerId": 2,
+      "name": "Safety Helmet (ISI Marked)",
+      "category": "Tools & Safety",
+      "price": 180,
+      "mrp": 220,
+      "unit": "per piece",
+      "stock": 300,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2020/10/CO/UE/LK/113201125/isi-mark-safety-helmet-500x500.jpg",
+      "description": "Impact resistant construction safety helmet, adjustable strap, ISI marked.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 20,
+      "sellerId": 2,
+      "name": "Cordless Drill Machine (18V)",
+      "category": "Tools & Safety",
+      "price": 2800,
+      "mrp": 3400,
+      "unit": "per piece",
+      "stock": 60,
+      "image": "https://inchtools.com/wp-content/uploads/2020/10/bosch-1.jpg",
+      "description": "Powerful cordless drill with 2 batteries, ideal for masonry and wood drilling.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 21,
+      "sellerId": 2,
+      "name": "Vitrified Floor Tiles (2x2 ft)",
+      "category": "Tiles & Sanitary",
+      "price": 45,
+      "mrp": 55,
+      "unit": "per sq.ft",
+      "stock": 5000,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2024/4/411114481/QA/KU/OG/204256572/vitrified-floor-tile-500x500.jpg",
+      "description": "Glossy finish vitrified tiles, stain resistant and easy to clean.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 22,
+      "sellerId": 2,
+      "name": "Wash Basin (Ceramic, Wall Mounted)",
+      "category": "Tiles & Sanitary",
+      "price": 1650,
+      "mrp": 1900,
+      "unit": "per piece",
+      "stock": 80,
+      "image": "https://ts1.mm.bing.net/th?id=OIP.GP8b_l8i_Xl2NWFMNGkEEgHaIS&pid=15.1",
+      "description": "Elegant ceramic wash basin with wall mounting fittings included.",
+      "createdAt": "2026-09-11T09:41:30.377Z"
+    },
+    {
+      "id": 23,
+      "createdAt": "2026-09-11T09:47:38.465Z",
+      "sellerId": 1,
+      "name": "Steel bars 550",
+      "category": "Steel & TMT Bars",
+      "price": 5000,
+      "mrp": 6000,
+      "unit": "10",
+      "stock": 100,
+      "image": "https://www.gbrmetals.com/images/1fe-550-banner.png",
+      "description": ""
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-11T09:51:11.742Z",
+      "userId": 3,
+      "customerName": "Demo Customer",
+      "items": [
+        {
+          "productId": 1,
+          "name": "UltraTech Cement (OPC 53 Grade)",
+          "price": 345,
+          "qty": 1,
+          "sellerId": 2
+        }
+      ],
+      "total": 345,
+      "address": "sdf, Taliparamba, Kannur - 670142",
+      "phone": "498156322",
+      "paymentMethod": "Online",
+      "status": "Placed"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-11T10:16:33.216Z",
+      "userId": 3,
+      "customerName": "Demo Customer",
+      "items": [
+        {
+          "productId": 13,
+          "name": "Copper Wire Cable (1.5 sqmm, 90m)",
+          "price": 1450,
+          "qty": 5,
+          "sellerId": 2
+        },
+        {
+          "productId": 17,
+          "name": "Stainless Steel Hinges (4 inch)",
+          "price": 45,
+          "qty": 10,
+          "sellerId": 2
+        },
+        {
+          "productId": 1,
+          "name": "UltraTech Cement (OPC 53 Grade)",
+          "price": 390,
+          "qty": 10,
+          "sellerId": 2
+        }
+      ],
+      "total": 11600,
+      "address": "abcd, Taliparamba, Kannur - 670001",
+      "phone": "46854651561",
+      "paymentMethod": "COD",
+      "status": "Placed"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-11T10:30:24.227Z",
+      "userId": 3,
+      "customerName": "Demo Customer",
+      "items": [
+        {
+          "productId": 5,
+          "name": "Red Clay Bricks (Standard)",
+          "price": 8,
+          "qty": 16,
+          "sellerId": 2
+        }
+      ],
+      "total": 128,
+      "address": "abcd, Taliparamba, Kannur - 670001",
+      "phone": "46854651561",
+      "paymentMethod": "Online",
+      "status": "Placed"
+    }
+  ],
+  "nextUserId": 4,
+  "nextProductId": 24,
+  "nextOrderId": 4
+}

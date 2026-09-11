@@ -1,0 +1,58 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h2 class="page-title">Checkout</h2>
+
+  <div class="cart-page">
+    <div>
+      <% if (error) { %><div class="form-error"><%= error %></div><% } %>
+      <form action="/checkout" method="POST" id="checkoutForm">
+        <div style="background:#fff;border:1px solid #e2e6e3;border-radius:8px;padding:20px;margin-bottom:16px;">
+          <h3 style="margin-top:0;">Delivery Details</h3>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="fullName" required value="<%= typeof user !== 'undefined' && user ? user.name : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" required placeholder="9876543210">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="address" required placeholder="House no, Street, Landmark">
+          </div>
+          <div class="form-group">
+            <label>Town / City</label>
+            <input type="text" name="city" required placeholder="e.g. Perinthalmanna">
+          </div>
+          <div class="form-group">
+            <label>Pincode</label>
+            <input type="text" name="pincode" required placeholder="679322">
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e2e6e3;border-radius:8px;padding:20px;">
+          <h3 style="margin-top:0;">Payment Method</h3>
+          <div class="form-group">
+            <label><input type="radio" name="paymentMethod" value="COD" checked style="width:auto;display:inline;margin-right:8px;"> Cash on Delivery</label>
+          </div>
+          <div class="form-group">
+            <label><input type="radio" name="paymentMethod" value="Online" style="width:auto;display:inline;margin-right:8px;"> Online Payment (UPI / Card)</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="summary-box">
+      <h3>Order Summary</h3>
+      <% items.forEach(item => { %>
+        <div class="summary-row"><span><%= item.product.name %> × <%= item.qty %></span><span>₹<%= item.subtotal %></span></div>
+      <% }) %>
+      <div class="summary-row"><span>Delivery</span><span>FREE</span></div>
+      <div class="summary-row total"><span>Total</span><span>₹<%= total %></span></div>
+      <button type="submit" form="checkoutForm" class="btn btn-block">Place Order</button>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

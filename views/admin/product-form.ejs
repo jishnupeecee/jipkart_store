@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="form-page" style="max-width:600px;">
+    <h2><%= product ? 'Edit Product' : 'Add New Product' %></h2>
+    <p class="sub">Admin product management</p>
+
+    <% if (error) { %><div class="form-error"><%= error %></div><% } %>
+
+    <form action="<%= product ? '/admin/products/' + product.id + '/edit' : '/admin/products/new' %>" method="POST">
+      <div class="form-group">
+        <label>Product Name *</label>
+        <input type="text" name="name" required value="<%= product ? product.name : '' %>">
+      </div>
+      <div class="form-group">
+        <label>Category *</label>
+        <select name="category" required>
+          <option value="">Select category</option>
+          <% ['Cement & Concrete','Steel & TMT Bars','Bricks & Blocks','Sand & Aggregates','Doors & Windows','Plumbing Supplies','Electrical Supplies','Paints & Coatings','Hardware & Fasteners','Tools & Safety','Tiles & Sanitary'].forEach(c => { %>
+            <option value="<%= c %>" <%= product && product.category === c ? 'selected' : '' %>><%= c %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <div class="form-group" style="flex:1;">
+          <label>Selling Price (₹) *</label>
+          <input type="number" name="price" required min="1" step="0.01" value="<%= product ? product.price : '' %>">
+        </div>
+        <div class="form-group" style="flex:1;">
+          <label>MRP (₹)</label>
+          <input type="number" name="mrp" min="1" step="0.01" value="<%= product ? product.mrp : '' %>">
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <div class="form-group" style="flex:1;">
+          <label>Unit *</label>
+          <input type="text" name="unit" required value="<%= product ? product.unit : '' %>">
+        </div>
+        <div class="form-group" style="flex:1;">
+          <label>Stock Quantity *</label>
+          <input type="number" name="stock" required min="0" value="<%= product ? product.stock : '' %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Image URL</label>
+        <input type="url" name="image" value="<%= product ? product.image : '' %>">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea name="description"><%= product ? product.description : '' %></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-block"><%= product ? 'Save Changes' : 'Add Product' %></button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

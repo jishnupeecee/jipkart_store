@@ -1,0 +1,88 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="dash-header">
+    <div>
+      <h2 class="page-title" style="margin-top:0;">Seller Dashboard</h2>
+      <p class="page-sub">Welcome back, <%= user.shopName || user.name %></p>
+    </div>
+    <a href="/seller/products/new" class="btn">+ Add New Product</a>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="label">Total Products</div><div class="value"><%= stats.productCount %></div></div>
+    <div class="stat-card"><div class="label">Low Stock Items</div><div class="value"><%= stats.lowStock %></div></div>
+    <div class="stat-card"><div class="label">Orders Received</div><div class="value"><%= stats.orderCount %></div></div>
+    <div class="stat-card"><div class="label">Total Sales</div><div class="value">₹<%= totalSales %></div></div>
+  </div>
+
+  <div class="section-heading">
+    <h2>My Products</h2>
+  </div>
+
+  <% if (products.length === 0) { %>
+    <div class="empty-state">
+      <div class="emoji">📦</div>
+      <h3>No products yet</h3>
+      <p class="page-sub">Add your first product to start selling on JipKart.</p>
+      <a href="/seller/products/new" class="btn">+ Add Product</a>
+    </div>
+  <% } else { %>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td><img class="thumb-sm" src="<%= p.image %>" alt=""></td>
+            <td><%= p.name %></td>
+            <td><%= p.category %></td>
+            <td>₹<%= p.price %> <span style="color:#667066;">/ <%= p.unit %></span></td>
+            <td>
+              <span class="badge <%= p.stock === 0 ? 'badge-red' : (p.stock < 20 ? 'badge-orange' : 'badge-green') %>"><%= p.stock %></span>
+            </td>
+            <td class="action-btns">
+              <a href="/products/<%= p.id %>" class="btn btn-sm btn-outline">View</a>
+              <a href="/seller/products/<%= p.id %>/edit" class="btn btn-sm btn-outline">Edit</a>
+              <form action="/seller/products/<%= p.id %>/delete" method="POST" onsubmit="return confirm('Delete this product?');">
+                <button type="submit" class="btn btn-sm" style="background:#fdecec;color:#c02626;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+
+  <div class="section-heading">
+    <h2>Recent Orders</h2>
+  </div>
+  <% if (orders.length === 0) { %>
+    <p class="page-sub">No orders yet for your products.</p>
+  <% } else { %>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Your Total</th><th>Status</th></tr></thead>
+      <tbody>
+        <% orders.forEach(o => {
+          const mine = o.items.filter(i => i.sellerId === user.id);
+          const myTotal = mine.reduce((s,i) => s + i.price*i.qty, 0);
+        %>
+          <tr>
+            <td>#<%= o.id %></td>
+            <td><%= o.customerName %></td>
+            <td><%= mine.map(i => i.name + ' ×' + i.qty).join(', ') %></td>
+            <td>₹<%= myTotal %></td>
+            <td><span class="badge <%= o.status === 'Delivered' ? 'badge-green' : 'badge-orange' %>"><%= o.status %></span></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
